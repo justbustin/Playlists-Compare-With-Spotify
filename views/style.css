@@ -1,0 +1,700 @@
+body {
+  margin: 40px;
+  font-family: sans-serif, Helvetica, sans-serif;
+  background: rgb(18,18,18);
+  color: white;
+}
+
+.displayNum {
+  font-size: 350%;
+}
+
+.numberAnalysis {
+  color: #31a731;
+}
+
+h3 {
+  display:inline;
+  text-decoration: underline;
+}
+h4 a {
+  text-decoration: underline;
+}
+
+a {
+  color: white;
+  font-family: helvetica;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a:active {
+  color: black;
+}
+
+.horizontalSlider{
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  display:block;
+  width: 100%;
+  overflow-x: scroll;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding-left: 20px;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+.sliderContainer{
+  display:block;
+  white-space: nowrap;
+}
+.item{
+  display:inline-block;
+  margin-right: 50px;
+}
+.item img{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#encapsuleGrid {
+  margin: 30px;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 28% auto 28%;
+  grid-template-areas:
+      "left middle right";
+    
+}
+
+#containerOne {
+  
+  grid-area: left;
+  
+}
+
+#conBorderOne {
+  /*border-style: solid;
+  border-color: white;
+
+    border-width: 1px;
+*/
+}
+
+#containerTwo {
+  grid-area: right;
+  
+}
+
+#conBorderTwo {
+  /*
+  border-style: solid;
+  border-color: white;
+ 
+    border-width: 1px;*/
+}
+
+#compareBox {
+  
+    
+    text-align: center; 
+    
+    
+
+    grid-area: middle;
+}
+
+#compBorder {
+  border-style: solid;
+    border-width: 1px;
+    border-color: white;
+
+}
+
+#compareButton{
+  font-size: 15px;
+  }
+
+.header {
+  display: grid;
+  padding:5px;
+  grid-template-columns: [index] 16px [first] 4fr [var1] 2fr;
+  text-align: start;
+}
+
+hr {
+  border: 0;
+  border-color: white;
+
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+  width:95%;
+  margin: 2 auto;
+}
+
+.row {
+  display: grid;
+  padding:5px;
+  grid-template-columns: [index] 16px [first] 4fr [var1] 2fr;
+  text-align: start;
+}
+
+.row:hover {
+  background-color: rgb(80, 80, 80);
+}
+
+.row:hover a {
+  color: white;
+}
+
+.row:hover span {
+  color: white;
+}
+
+.tracklist {
+  display: flex;
+  margin-left: 15px;
+}
+
+.nameSong {
+  margin-left: 15px;
+  display:grid;
+  grid-template-rows: auto;
+  text-align: start;
+}
+
+.songsArtist {
+  color: rgb(169, 169, 169)
+}
+
+.titleHeader {
+  margin-left: 15px;
+}
+
+.hiddenVal {
+  display: none;
+}
+
+.artistRow {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin:15px;
+}
+
+.artCol1 {
+  flex: 1 1 25%;
+  
+}
+
+.artCol2 {
+  flex: 1 1 70%;
+}
+
+.detailsRow {
+  position: absolute; 
+  left: -999em;
+  display:flex;
+  flex-direction: row;
+  background-color: grey;
+  margin: 0px 10px;
+  margin-bottom: -30px;
+  opacity: 0;
+  transition: transform 900ms, opacity 900ms;
+
+}
+
+.detailsTracks{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin:10px;
+}
+
+.songsLeft {
+  padding: 5px;
+  flex: 1 1 50%;
+}
+
+.songsRight {
+  padding: 5px;
+  flex: 1 1 50%;
+}
+
+.artistRow:hover + .detailsRow {
+  display:flex;
+  flex-direction: row;
+  background-color: grey;
+  margin:20px;
+  margin-bottom: -30px;
+  position: relative;
+  left:0;
+  transform: translateY(-20px);
+  opacity: 1;
+}
+
+
+.detailsRow:hover {
+  display:flex;
+  flex-direction: row;
+  background-color: grey;
+  margin:20px;
+  margin-bottom: -32px;
+
+  position: relative;
+  left:0;
+  transform: translateY(-20px);
+  opacity: 1;
+}
+
+.artistRow img {
+  
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.album a {
+  color: rgb(169, 169, 169)
+}
+
+.albumGrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto;
+}
+
+.albumRow:first-child {
+  grid-column: 1 / 3;
+}
+
+.albumRow:hover + .detailsRow {
+  display:flex;
+  flex-direction: row;
+  background-color: grey;
+  margin: 0px 20px;
+  position: relative;
+  left:0;
+  grid-column: 1 / -1;
+  transform: translateY(5px);
+  opacity: 1;
+}
+
+
+
+.albumRow img {
+  width: 65%;
+  height: 65%;
+  object-fit: cover;
+}
+
+#myBtn {
+  /* default for <button>, but useful for <a> */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 2px transparent;
+  border-radius: 0.4em;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: #ffffff;
+  background-color: #31a731;
+}
+
+#compareButton {
+  
+    /* default for <button>, but useful for <a> */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+  
+    /* create a small space when buttons wrap on 2 lines */
+    margin: 2px 0;
+  
+    /* invisible border (will be colored on hover/focus) */
+    border: solid 2px transparent;
+    border-radius: 0.4em;
+  
+    /* size comes from text & padding (no width/height) */
+    padding: 0.5em 1em;
+  
+    /* make sure colors have enough contrast! */
+    color: #ffffff;
+    background-color: #31a731;
+
+    margin: 20px;
+  
+}
+
+#compareButton:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
+#compareButton:hover {
+  color: #31a731;
+  border-color: currentColor;
+  background-color: #ffffff;
+}
+
+input[type=submit] {
+    /* default for <button>, but useful for <a> */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+  
+    /* create a small space when buttons wrap on 2 lines */
+    margin: 2px 0;
+  
+    /* invisible border (will be colored on hover/focus) */
+    border: solid 2px transparent;
+    border-radius: 0.4em;
+  
+    /* size comes from text & padding (no width/height) */
+    padding: 0.5em 1em;
+  
+    /* make sure colors have enough contrast! */
+    color: #ffffff;
+    background-color: #31a731;
+}
+
+input[type=submit]:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
+input[type=submit]:hover {
+  color: #31a731;
+  border-color: currentColor;
+  background-color: #ffffff;
+}
+
+button[type=button] {
+   /* default for <button>, but useful for <a> */
+   display: inline-block;
+   text-align: center;
+   text-decoration: none;
+ 
+   /* create a small space when buttons wrap on 2 lines */
+   margin: 2px 0;
+ 
+   /* invisible border (will be colored on hover/focus) */
+   border: solid 2px transparent;
+   border-radius: 0.2em;
+ 
+   /* size comes from text & padding (no width/height) */
+   padding: 0.4em 1em;
+ 
+   /* make sure colors have enough contrast! */
+   color: #000000;
+   background-color: #ffffff;
+}
+
+button[type=button]:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
+button[type=button]:hover {
+  color: #31a731;
+  border-color: currentColor;
+  background-color: #ffffff;
+}
+
+#log {
+  position:absolute;
+     top:0;
+     right:0;
+  /* default for <button>, but useful for <a> */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 2px transparent;
+  border-radius: 0.4em;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: #ffffff;
+  background-color: #31a731;
+}
+
+#log:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
+#log:hover {
+  color: #31a731;
+  border-color: currentColor;
+  background-color: #ffffff;
+}
+
+/*
+.albumRow {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin:15px;
+}
+
+.albCol1 {
+  flex: 1 1 50%;
+  
+}
+
+.albCol2 {
+  flex: 1 1 25%;
+}
+
+.albumRow img {
+  
+  width: 60%;
+  height: 60%;
+  object-fit: cover;
+}*/
+
+@media (min-device-width: 1051px) and (max-width: 1250px) {
+
+  .row {
+    grid-template-columns: 16px auto;
+  }
+
+  .album{
+    display: none;
+  }
+
+  #encapsuleGrid {
+    margin:0%;
+    grid-template-columns: 30% auto 30%;
+    
+  }
+}
+
+@media (max-width: 1050px) {
+
+  .album{
+    display:inline;
+  }
+
+  .row {
+    grid-template-columns: [index] 16px [first] 4fr [var1] 2fr;
+  }
+
+  #encapsuleGrid {
+
+      grid-template-columns: 550px;
+    justify-content: center;
+      grid-template-areas: 
+          'middle'
+          'left'
+          'right';
+  }
+}
+
+@media (max-width: 590px) {
+  #encapsuleGrid {
+
+      grid-template-columns: 435px;
+      justify-content: center;
+      grid-template-areas: 
+          'middle'
+          'left'
+          'right';
+  }
+}
+
+@media (max-width: 400px) {
+  #encapsuleGrid {
+
+      grid-template-columns: 350px;
+      justify-content: center;
+      grid-template-areas: 
+          'middle'
+          'left'
+          'right';
+  }
+}
+
+#makespace {
+  height:300px;
+}
+
+
+/*
+.poop {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  
+}
+
+
+#containerOne {
+    float:left;
+    width:28%;
+    margin-left: 25px;
+    border-style: solid;
+    border-width: 1px;
+    padding:10px;
+}
+#containerTwo {
+    float:right;
+    width:28%;
+    margin-right: 25px;
+    border-style: solid;
+    border-width: 1px;
+    padding:10px;
+}
+
+
+
+#containerOne .box {
+    position: relative;
+    width: 70%;
+    
+    
+  }
+
+  #containerTwo .box {
+    position: relative;
+    width: 70%;
+    
+    
+  }
+  
+  #containerOne .box:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  #containerTwo .box:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+#compareBox {
+  border-style: solid;
+    border-width: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; 
+    width: 35%;
+    
+}
+
+#compareButton{
+font-size: 15px;
+}
+
+
+#artist {
+  float:right;
+  padding-right: 10px;
+}
+
+
+#login {
+  float:right;
+}
+
+#logout {
+  float:right;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+li {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  /*border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(139, 139, 139);
+}
+
+/* compare layout  */
+/*
+.header {
+  display: grid;
+  padding:5px;
+  grid-template-columns: [index] 16px [first] 4fr [var1] 2fr;
+  text-align: start;
+  padding-left: 15px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+  width:98%;
+  margin: 2 auto;
+}
+
+.row {
+  display: grid;
+  padding:5px;
+  grid-template-columns: [index] 16px [first] 4fr [var1] 2fr;
+  text-align: start;
+  padding-left: 15px;
+}
+
+
+.tracklist {
+  display: flex;
+  margin-left: 15px;
+}
+
+.nameSong {
+  margin-left: 15px;
+  display:grid;
+  grid-template-rows: auto;
+  text-align: start;
+}
+
+.titleHeader {
+  margin-left: 15px;
+}
+
+.row:hover {
+  background-color: gainsboro;
+}
+
+.hiddenVal {
+  display: none;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <title>Spotify API</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Spotify Compare</h1>
+        <div id="msg"></div>
+    </header>
+
+    <div>
+        <button id="login" type="button">
+            Log In
+        </button>
+    </div>
+
+    <div id="containerOne">
+        
+        <form id="formOne">
+
+            <input type="text" id="inputOne" autocomplete="on">
+            <input type="submit">
+        </form>
+        
+        <div class = "box">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" id="img">
+        </div>
+        
+        <div>
+            <h1 id ="playNameOne"></h1>
+            <h2 id="nameOne"></h2>
+        </div>
+
+        <div>
+            <ol id="tracks">
+                
+            </ol>
+        </div>
+
+    </div>
+
+    <div id="containerTwo">
+        
+        <form id="formTwo">
+
+            <input type="text" id="inputTwo" autocomplete="on">
+            <input type="submit">
+        </form>
+        
+        <div class = "box">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" id="imgTwo">
+        </div>
+        
+        <div>
+            <h1 id ="playNameTwo"></h1>
+            <h2 id="nameTwo"></h2>
+        </div>
+
+        <div>
+            <ol id="tracksTwo">
+                
+            </ol>
+        </div>
+
+    </div>
+
+    <div id="compareBox" data-aos="fade-in">
+        
+        <button type="button" id="compareButton">Compare!</button>
+        <div>
+            <ol id="same">
+
+            </ol>
+        </div>
+    </div>
+    
+
+    <script src="main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<div  data-aos="fade-right" data-aos-delay="50"
+data-aos-duration="1500" data-aos-once="true">
+    <h3>You share...</h3>
+    <h1 class="displayNum"><span class="numberAnalysis"><%= data.items.length %></span> <span>Song(s)</span></h1>
+</div>
+
+<div class = "header">
+    <div class="column1">
+        <div class="playButton">
+            <span>#</span>
+        </div>
+    </div>
+    <div> <!-- this will be a grid -->
+        <div class="titleHeader">Title</div>
+        
+    </div>
+    <div class="album">
+        Album
+    </div>
+</div>
+
+<hr>
+
+<% for (let i = 0; i < data.items.length; i++) { %>
+<div class = "row" data-aos="fade-left" data-aos-delay="50"
+data-aos-duration="1000">
+    <div class="column1">
+        <div class="playButton">
+            <span><%= i + 1 %></span>
+        </div>
+    </div>
+    <div class="tracklist"> <!-- this will be a grid -->
+        <div class="albumCover"><img width="80" height="80" id="test" src="<%= data.items[i].value.songImg%>"></div>
+        <div class="nameSong"><%= data.items[i].value.songName %><div class="songsArtist"><span><%= data.items[i].value.artist %></span></div></div>
+        <div class="hiddenVal"><%= data.items[i].value.songID %></div>
+    </div>
+    <div class="album">
+        <a href="<%= data.items[i].value.albumLink %> " target="_blank"><%= data.items[i].value.albumName %></a>
+    </div>
+</div>
+
+<% } %>
+
+<div  data-aos="fade-right" data-aos-delay="50"
+data-aos-duration="1000" data-aos-once="true">
+    <h3>You share...</h3>
+    <h1 class="displayNum"><span class="numberAnalysis"><%= data.artistSame.length %></span> <span>Artist(s)</span></h1>
+</div>
+
+<% for (let i = 0; i < data.artistSame.length; i++) { %>
+    <div class="artistRow" data-aos="fade-left" data-aos-delay="50"
+    data-aos-duration="1000" data-aos-anchor-placement="top-center" data-aos-once="true" data-aos-id="test">
+        <div class="artCol1">
+            <div><h2><%= data.artistSame[i].name %></h2></div>
+        </div>
+        <div class="artCol2">
+            <div><img src="<%= artists[i].images[0].url %>"></div>  <!-- add if else here to prevent error of possibly no url -->
+        </div>
+    </div>
+    
+    <div class="detailsRow">
+        <div class="songsLeft">
+                <h3>Left</h3>
+            <% for (let j = 0; j < data.artistSame[i].value.songsLeft.length; j++) { %>
+
+                <div class="detailsTracks"> <!-- this will be a grid -->
+                    <div class="albumCover"><img width="80" height="80" id="test" src="<%= data.artistSame[i].value.songsLeft[j].songImg %>"></div>
+                    <div class="nameSong"><%= data.artistSame[i].value.songsLeft[j].songName %></div>
+                </div>
+
+            <% } %>
+        </div>
+        <div class="songsRight">
+            
+                <h3>Right</h3>
+           
+            <% for (let j = 0; j < data.artistSame[i].value.songsRight.length; j++) { %>
+                <div class="detailsTracks"> <!-- this will be a grid -->
+                    <div class="albumCover"><img width="80" height="80" id="test" src="<%= data.artistSame[i].value.songsRight[j].songImg %>"></div>
+                    <div class="nameSong"><%= data.artistSame[i].value.songsRight[j].songName %></div>
+                </div>
+
+            <% } %>
+        </div>
+    </div>
+<% } %>
+
+<div data-aos="fade-right" data-aos-delay="50"
+data-aos-duration="1000" data-aos-once="true">
+    <h3>You share...</h3>
+    <h1 class="displayNum"><span class="numberAnalysis"><%= data.albumSame.length %> </span> <span>Album(s)</span></h1>
+</div>
+
+<div class="albumGrid">
+<% for (let i = 0; i < data.albumSame.length; i++) { %>
+    <div class="albumRow" data-aos="fade-in" data-aos-delay="50"
+    data-aos-duration="1000" data-aos-once="true">
+        <div class="albCol1">
+            <div><img src="<%= data.albumSame[i].value.albumIMG %>"></div>
+            <div><h2><%= data.albumSame[i].name %></h2></div>
+        </div> 
+
+        
+    </div>
+    
+    <div class="detailsRow">
+        <div class="songsLeft">
+                <h3>Left</h3>
+            <% for (let j = 0; j < data.albumSame[i].value.songsLeft.length; j++) { %>
+                <div class="detailsTracks"> <!-- this will be a grid -->
+                    <div class="albumCover"><img width="80" height="80" id="test" src="<%= data.albumSame[i].value.songsLeft[j].songImg %>"></div>
+                    <div class="nameSong"><%= data.albumSame[i].value.songsLeft[j].songName %></div>
+                </div>
+            <% } %>
+        </div>
+        <div class="songsRight">
+            
+                <h3>Right</h3>
+           
+            <% for (let j = 0; j < data.albumSame[i].value.songsRight.length; j++) { %>
+                <div class="detailsTracks"> <!-- this will be a grid -->
+                    <div class="albumCover"><img width="80" height="80" id="test" src="<%= data.albumSame[i].value.songsRight[j].songImg %>"></div>
+                    <div class="nameSong"><%= data.albumSame[i].value.songsRight[j].songName %></div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+<% } %>
+</div>

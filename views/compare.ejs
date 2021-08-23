@@ -1,0 +1,36 @@
+<div class = "header">
+    <div class="column1">
+        <div class="playButton">
+            <span>#</span>
+        </div>
+    </div>
+    <div> <!-- this will be a grid -->
+        <div class="titleHeader">Title</div>
+        
+    </div>
+    <div class="album">
+        Album
+    </div>
+</div>
+
+<hr>
+
+<% for (let i = 0; i < data.length; i++) { %>
+<div class = "row" data-aos="fade-in" data-aos-delay="50"
+data-aos-duration="1000" data-aos-once="true">
+    <div class="column1">
+        <div class="playButton">
+            <span><%= i + 1 %></span>
+        </div>
+    </div>
+    <div class="tracklist" > <!-- this will be a grid -->
+        <div class="albumCover"><img width="40" height="40" id="test" src="<%= data[i].value.songImg%>"></div>
+        <div class="nameSong"><%= data[i].value.songName %><div class="songsArtist"><span><%= data[i].value.artist %></span></div></div>
+        <div class="hiddenVal"><%= data[i].value.songID %></div>
+    </div>
+    <div class="album">
+        <a href="<%= data[i].value.albumLink %> " target="_blank"><%= data[i].value.albumName %></a>
+    </div>
+</div>
+
+<% } %>
