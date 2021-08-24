@@ -45,7 +45,7 @@ mongoose.set('useUnifiedTopology', true);
 
 // connects DB and starts up server after connection begins
 mongoose.connect(dbURI)
-    .then(async () => {
+    .then(() => {
         Account.checkToken()
             .then(result => {
                 referenceData = result
