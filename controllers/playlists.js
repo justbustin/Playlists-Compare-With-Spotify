@@ -4,7 +4,7 @@ const router = express.Router()
 const {callToken} = require('../helpers/token')
 
 const Account = require('../models/acc')
-const api = require('../api');
+const api = require('../helpers/api');
 
 
 router.get('/:id', (req, res, next) => {

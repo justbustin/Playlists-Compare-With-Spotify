@@ -1,9 +1,3 @@
-// need to change js to fit new layout
-// ideas:
-// could just try to remake it with plain javascript. could be intensive on client
-// create a map each time and send to server for it to render
-// drawback of this is that im creating two maps, and then converting to array and then an object and then sending to server
-
 console.log("working");
 
 // how the parsing works
@@ -13,8 +7,6 @@ let x = false;
 
 const mapLeft = new Map();
 const mapRight = new Map();
-
-
 
 
 document.addEventListener('aos:in:test', () => {
