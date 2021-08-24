@@ -55,14 +55,17 @@ data-aos-duration="1000" data-aos-once="true">
         </div>
         <div class="artCol2">
             <% if (i < 51) { %>
-                <% if (artists[i] != null) { %>
-            <div><img src="<%= artists[i].images[0].url %>"></div>  <!-- add if else here to prevent error of possibly no url -->
+                <% if (artists[i]) { %>
+                <% if (artists[i].images.length > 0) { %>
+                <div><img src="<%= artists[i].images[0].url %>"></div>  <!-- add if else here to prevent error of possibly no url -->
+                <% } %>
                 <% } %>
             <% } %>
         </div>
     </div>
     
     <div class="detailsRow">
+        
         <div class="songsLeft">
                 <h3>Left</h3>
             <% for (let j = 0; j < data.artistSame[i].value.songsLeft.length; j++) { %>

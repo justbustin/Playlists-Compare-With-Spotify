@@ -1,8 +1,40 @@
 body {
-  margin: 40px;
+  margin: 0px;
   font-family: sans-serif, Helvetica, sans-serif;
   background: rgb(18,18,18);
   color: white;
+}
+
+.home {
+  height: 80vh;
+  width:100%;
+  background-image: url("./background1.jpg");
+  background-size: cover;
+  box-sizing: border-box;
+  opacity: 0.9;
+}
+
+.home header {
+  margin:40px;
+  padding: 30px;
+  text-shadow: white 0px 0px 10px;
+  font-size: 20px;
+
+}
+
+.home img {
+  width: 20%;
+  float:right;
+}
+
+#demo {
+  margin:30px;
+  text-shadow: white 0px 0px 5px;
+  font-size: 20px;
+}
+
+#demo h3 {
+  text-decoration: solid;
 }
 
 .displayNum {
@@ -36,6 +68,10 @@ a:active {
   color: black;
 }
 
+.encapsuleSlider {
+  margin: 10px;
+}
+
 .horizontalSlider{
   border-style: solid;
   border-color: white;
@@ -43,25 +79,50 @@ a:active {
   display:block;
   width: 100%;
   overflow-x: scroll;
-  margin-top: 5px;
+  margin-top: 20px;
   margin-bottom: 15px;
   padding-left: 20px;
-  padding-top: 10px;
+  padding-top: 0px;
+  padding-bottom: 10px;
   box-sizing: border-box;
 }
 
 .sliderContainer{
-  display:block;
-  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
 }
 .item{
-  display:inline-block;
-  margin-right: 50px;
+  width: 190px;
+  max-height: 280px;
+  margin: 10px;
+  margin-right: 35px;
 }
+
+.item p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+
+  @supports (-webkit-line-clamp: 2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
+
 .item img{
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   object-fit: cover;
+}
+
+.item .songsArtist:hover{
+  color:white;
 }
 
 .img {
@@ -216,6 +277,10 @@ hr {
   opacity: 0;
   transition: transform 900ms, opacity 900ms;
 
+}
+
+.explanation {
+  flex: 1 100%;
 }
 
 .detailsTracks{

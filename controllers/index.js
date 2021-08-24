@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const api = require('../api')
+const api = require('../helpers/api')
 const isAuth = require('../middlewares/isAuth')
 
 
@@ -16,6 +16,9 @@ router.get('/', isAuth, async (req, res) => {
         let data = await api.getListPlaylists(req.session.accessToken, req.session.userID)
 
         req.session.playlists = await JSON.parse(data);
+
+        console.log("PLAYLIST REEEEEEEEEEEEEEEEEEE")
+        console.log(req.session.playlists.items[0])
 
         res.render('index', { session: req.session })
 
