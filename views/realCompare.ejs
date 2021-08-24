@@ -54,7 +54,11 @@ data-aos-duration="1000" data-aos-once="true">
             <div><h2><%= data.artistSame[i].name %></h2></div>
         </div>
         <div class="artCol2">
+            <% if (i < 51) { %>
+                <% if (artists[i] != null) { %>
             <div><img src="<%= artists[i].images[0].url %>"></div>  <!-- add if else here to prevent error of possibly no url -->
+                <% } %>
+            <% } %>
         </div>
     </div>
     

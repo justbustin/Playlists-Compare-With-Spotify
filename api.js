@@ -36,7 +36,6 @@ let token = function callToken(grant_type, code){
             console.log('statusCode:' + res.statusCode);
             
             res.on("data", d =>{
-                console.log(d);
                 body += d;
                 //console.log(body);
             })
@@ -61,7 +60,7 @@ let token = function callToken(grant_type, code){
             req.write(queryString.stringify({
                 grant_type:'authorization_code',
                 code: code,
-                redirect_uri: 'http://localhost:3000/oauth-callback'
+                redirect_uri: 'http://localhost:3000/auth/oauth-callback'
             }));
         }
         

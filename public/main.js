@@ -50,7 +50,7 @@ function scrollFunction() {
 async function callHTML(bodyData)
 {
     let jsonData = JSON.stringify(bodyData);
-    const response = await fetch('testing', {
+    const response = await fetch('playlists/compare', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ async function callPlaylist(playlistID)
 {
     let res = (playlistID.substring(34, 56) != "") ? playlistID.substring(34, 56) : playlistID;
     console.log("result from parse: " + res);
-    const response = await fetch(`api/${res}`);
+    const response = await fetch(`playlists/${res}`);
     console.log(response);
     const data = await response.json();
     return data;
@@ -103,7 +103,7 @@ loginBtn.addEventListener("click", redirectSpotAuth);
 function redirectSpotAuth(e)
 {
     console.log("hello");
-    window.location.href = "login";
+    window.location.href = "auth";
 }
 
 function onSubmit(e)
@@ -167,56 +167,22 @@ function onSubmit(e)
         //which is an array given to us from the fetch data
         //use forEach function to do a function for each of the track
         data.tracks.items.forEach(song => {
-            
-            let fullKey = song.track.name + 'artist:' + song.track.artists[0].name;
-            if (e.path[0].id == "formOne")
+            if (song.track.uri.substr(0, 13) != "spotify:local")
             {
-                mapLeft.set(fullKey, {songName: song.track.name, artist: song.track.artists[0].name, albumName: song.track.album.name, 
-                    songImg: song.track.album.images[0].url, songID: song.track.id, artistID: song.track.artists[0].id, albumLink: song.track.album.external_urls.spotify});   
-            }
-            else if (e.path[0].id == "formTwo")
-            {
-                mapRight.set(fullKey, {songName: song.track.name, artist: song.track.artists[0].name, albumName: song.track.album.name, 
-                    songImg: song.track.album.images[0].url, songID: song.track.id, artistID: song.track.artists[0].id, albumLink: song.track.album.external_urls.spotify});
+                let fullKey = song.track.name + 'artist:' + song.track.artists[0].name;
+                if (e.path[0].id == "formOne")
+                {
+                    mapLeft.set(fullKey, {songName: song.track.name, artist: song.track.artists[0].name, albumName: song.track.album.name, 
+                        songImg: song.track.album.images[0].url, songID: song.track.id, artistID: song.track.artists[0].id, albumLink: song.track.album.external_urls.spotify});   
+                }
+                else if (e.path[0].id == "formTwo")
+                {
+                    mapRight.set(fullKey, {songName: song.track.name, artist: song.track.artists[0].name, albumName: song.track.album.name, 
+                        songImg: song.track.album.images[0].url, songID: song.track.id, artistID: song.track.artists[0].id, albumLink: song.track.album.external_urls.spotify});
+
+                }
 
             }
-
-            //console.log(objMain)
-
-            /*
-            //creates a li tag in html
-            let li = document.createElement("li");
-            // do if e.path[0] == formone
-
-            //sets whats inside the actual li
-            li.innerHTML = `<span class="songz"><img class="poop" src=${song.track.album.images[0].url}>${song.track.name}</span><span id="artist">${song.track.artists[0].name}</span>`;
-            //adds value of the id to the li as name attribute
-            li.name = song.track.id;
-            console.log(`${song.track.name}\n${song.track.artists[0].name}`)
-            
-            //let fullKey = song.track.id;
-            //console.log("REEEEEEEEEEEE" + fullKey)
-            let fullKey = `${song.track.name}\n${song.track.artists[0].name}`;
-            if (e.path[0].id == "formOne")
-            {
-                li.className = "tracksListOne";
-                mapSongs.set(fullKey, {songName: song.track.name, artist: song.track.artists[0].name, albumName: song.track.album.name, 
-                    songImg: song.track.album.images[0].url, songID: song.track.id, artistID: song.track.artists[0].id});
-            }
-            else if (e.path[0].id == "formTwo")
-            {
-                li.className = "tracksListTwo";
-            }
-
-            let span = document.createElement('span');
-            span.innerHTML = song.track.artists[0].name;
-            span.name = song.track.artists[0].id;
-
-            
-
-            //adds the li into the ol #tracks
-            queryTracks.appendChild(li);
-            */
         })
         let objMain;
         if (e.path[0].id == "formOne")
