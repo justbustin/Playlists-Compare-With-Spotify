@@ -14,9 +14,8 @@
                 <header>
                     <span><img src="./logo.png"></span>
                     <h1>Playlists Compare with Spotify</h1>
-                    <h2>Compare playlists indvidually or entire profiles!</h2>
-                    <div id="msg"></div>
-                    
+                    <h2>Compare playlists with yourself and others!</h2>
+                    <h4>Made with Spotify API</h4>
                 </header>
             </div>
 
@@ -27,7 +26,8 @@
             </button>
             <div id="demo">
                 <h1>Demo: </h1>
-                <h3>Login for a more personal experience!</h3>
+                <h3>Login above for a more personal experience!</h3>
+                <div id="msg"></div>
             </div>
         <% } else { %>
             <form action="/auth/logout" method="POST">
@@ -36,7 +36,8 @@
                 </button>
                 <div id="demo">
                     <h1>Your Playlists: </h1>
-                    <h3>Open Spotify or "Friends List" to find your friends'!</h3>
+                    <h3>Open Spotify or "Friends List" to find more playlists!</h3>
+                    <div id="msg"></div>
                 </div>
             </form>
 
@@ -46,7 +47,8 @@
     
 
     <div class="encapsuleSlider">
-        <div class="horizontalSlider">
+        <div class="horizontalSlider" data-aos="fade-down" data-aos-delay="50"
+        data-aos-duration="1000" data-aos-once="false">
             <div class="sliderContainer">
                 <% if (session.isAuth) { %>  
                 <div class="item">
@@ -57,6 +59,7 @@
                         <% } %>
                     <p><%= session.dataXD.display_name %></p>
                     <h4><a href="https://open.spotify.com/user/<%=session.userID%>/following" target="_blank">Friends List</a></h4>
+                    <h4><a href="https://open.spotify.com/search" target="_blank">Open Spotify</a></h4>
                 </div>
                 
                     <% for (let i = 0; i < session.playlists.items.length; i++) { %>
@@ -146,11 +149,11 @@
 
 <div id="encapsuleGrid">
     <div id="containerOne" data-aos="fade-in" data-aos-delay="50"
-    data-aos-duration="2000" data-aos-once="false" data-aos-id="test">
+    data-aos-duration="2000" data-aos-once="false">
     <div id="conBorderOne">
         <form id="formOne">
 
-            <input type="text" id="inputOne" autocomplete="on">
+            <input type="text" id="inputOne" placeholder="Spotify playlist link or id" autocomplete="on">
             <input type="submit">
         </form>
         
@@ -171,11 +174,11 @@
     </div>
 
     <div id="containerTwo" data-aos="fade-in" data-aos-delay="50"
-    data-aos-duration="2000" data-aos-once="false" data-aos-id="test">
+    data-aos-duration="2000" data-aos-once="false">
         <div id="conBorderTwo">
         <form id="formTwo">
 
-            <input type="text" id="inputTwo" autocomplete="on">
+            <input type="text" id="inputTwo" placeholder="Spotify playlist link or id" autocomplete="on">
             <input type="submit">
         </form>
         
@@ -195,7 +198,7 @@
     </div>
 
     <div id="compareBox" data-aos="fade-in" data-aos-delay="50"
-    data-aos-duration="2000" data-aos-once="false" data-aos-id="test">
+    data-aos-duration="2000" data-aos-once="false">
         <div id="compBorder">
         <button type="button" id="compareButton" onclick="compare()"><span>Compare!</span></button>
         <div id="same">

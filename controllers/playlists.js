@@ -74,7 +74,7 @@ router.post("/compare", (req, res) => {
            }
            api.getSeveralArtists(req.session.accessToken, tempArr).then(data => {
                let useful = JSON.parse(data)
-               console.log(useful);
+               console.log("called artists")
 
                res.render('realCompare.ejs', {data: req.body, artists: useful.artists});
            })
@@ -91,8 +91,8 @@ router.post("/compare", (req, res) => {
             
             api.getSeveralArtists(referenceData.access_token, tempArr).then(data => {
                 let useful = JSON.parse(data)
-                console.log(useful);
-
+                console.log("called artists")
+                
                 res.render('realCompare.ejs', {data: req.body, artists: useful.artists});
             })
        }
