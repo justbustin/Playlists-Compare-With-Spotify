@@ -4,6 +4,7 @@ console.log("working");
 //let link = "https://open.spotify.com/playlist/3TJG5xIEdVW4WqT3YcGpz0?si=077d6c12f13c4440";
 //console.log(link.substring(34, 56));
 let x = false;
+let changed = true;
 
 const mapLeft = new Map();
 const mapRight = new Map();
@@ -19,8 +20,8 @@ document.addEventListener('aos:in:test', () => {
 })
 
 function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 800;
+    document.documentElement.scrollTop = 800;
   }
 
 //Get the button
@@ -30,7 +31,7 @@ var mybutton = document.getElementById("myBtn");
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+  if (document.body.scrollTop > 1500 || document.documentElement.scrollTop > 1500) {
     mybutton.style.display = "block";
     
   } else {
@@ -118,11 +119,7 @@ function onSubmit(e)
         console.log("error");
 
         playlistLink.value = "";
-        document.querySelector("#msg").innerHTML = "<h2>please input correct link</h2>";
-
-        queryImg.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC";
-        queryPlaylistName.innerHTML = "";
-        queryUsername.innerHTML = "";
+        document.querySelector("#msg").innerHTML = "<h2>please input a valid link or id</h2>";
 
         setTimeout(() => {
             document.querySelector("#msg").innerHTML = "";
@@ -130,19 +127,20 @@ function onSubmit(e)
         return;
     }
 
-    queryTracks.innerHTML = "";
-
-    //clears map before calling playlist if formOne
-    if (e.path[0].id == "formOne")
-    {
-        mapLeft.clear();
-    }
-    else{
-        mapRight.clear();
-    }
-
     //calls the api function (api call done by server and server returns the data back here)
     callPlaylist(playlistLink.value).then(data => {
+        //clears map before calling playlist if formOne
+        if (e.path[0].id == "formOne")
+        {
+            mapLeft.clear();
+        }
+        else{
+            mapRight.clear();
+        }
+
+        // clears tracks
+        queryTracks.innerHTML = "";
+
         console.log("inside callPlaylist");
         console.log(data);
         queryImg.value = data.id;
@@ -197,17 +195,17 @@ function onSubmit(e)
 
         playlistLink.value = "";
         console.log("done with async call");
-      
+        changed = true;
     })
     .catch((err) => {
         console.log("err: " + err);
 
         playlistLink.value = "";
-        document.querySelector("#msg").innerHTML = "<h2>please input correct link</h2>";
+        document.querySelector("#msg").innerHTML = "<h2>please input a valid link or id</h2>";
 
-        queryImg.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC";
-        queryPlaylistName.innerHTML = "";
-        queryUsername.innerHTML = "";
+        //queryImg.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC";
+        //queryPlaylistName.innerHTML = "";
+        //queryUsername.innerHTML = "";
 
         setTimeout(() => {
             document.querySelector("#msg").innerHTML = "";
@@ -217,6 +215,18 @@ function onSubmit(e)
 
 function compare()
 {
+    if (changed == false || mapLeft.size == 0 || mapRight.size == 0)
+    {
+        document.querySelector("#msg").innerHTML = "<h2>please choose a new playlist before comparing</h2>";
+
+        setTimeout(() => {
+            document.querySelector("#msg").innerHTML = "";
+        }, 5000);
+
+        return;
+    }
+
+    changed = false;
 
     let queryTracks = document.querySelector("#same");
     
@@ -240,6 +250,8 @@ function compare()
 
     for (let [key, value] of mapLeft)
     {
+        
+
         if (mapRight.has(key))
         {
             mapSame.set(key, value);
@@ -251,19 +263,19 @@ function compare()
 
         if (!mapArtist.has(value.artist))
         {
-            mapArtist.set(value.artist, {artist: value.artist, songs: [{songName: value.songName, songImg: value.songImg}] })
+            mapArtist.set(value.artist, {artist: value.artist, songs: [{songName: value.songName, songImg: value.songImg, albumLink: value.albumLink}] })
            
         }
         else
         {
-            mapArtist.get(value.artist).songs.push({songName: value.songName, songImg: value.songImg})
+            mapArtist.get(value.artist).songs.push({songName: value.songName, songImg: value.songImg, albumLink: value.albumLink})
         }
 
         // adds all albums 
         if (!mapAlbum.has(value.albumName))
         {
            
-            mapAlbum.set(value.albumName, {albumName: value.albumName, songs: [{songName: value.songName, songImg: value.songImg}] })
+            mapAlbum.set(value.albumName, {albumName: value.albumName, albumLink: value.albumLink, songs: [{songName: value.songName, songImg: value.songImg}] })
         }
         else
         {
@@ -282,13 +294,13 @@ function compare()
             if (!artistSame.has(value.artist))
             {
 
-                artistSame.set(value.artist, {artistID: value.artistID, artist: value.artist, songsLeft: mapArtist.get(value.artist).songs, songsRight: [{songName: value.songName, songImg: value.songImg}] })
+                artistSame.set(value.artist, {artistID: value.artistID, artist: value.artist, songsLeft: mapArtist.get(value.artist).songs, songsRight: [{songName: value.songName, songImg: value.songImg, albumLink: value.albumLink}] })
                 
                 
             }
             else // if artistSame does have value.artist key
             {
-                artistSame.get(value.artist).songsRight.push({songName: value.songName, songImg: value.songImg})
+                artistSame.get(value.artist).songsRight.push({songName: value.songName, songImg: value.songImg, albumLink: value.albumLink})
             }
         }
         
@@ -297,7 +309,7 @@ function compare()
             if (!albumSame.has(value.albumName))
             {
 
-                albumSame.set(value.albumName, {albumIMG: value.songImg, songsLeft: mapAlbum.get(value.albumName).songs, songsRight: [{songName: value.songName, songImg: value.songImg}] })
+                albumSame.set(value.albumName, {albumIMG: value.songImg, albumLink: value.albumLink, songsLeft: mapAlbum.get(value.albumName).songs, songsRight: [{songName: value.songName, songImg: value.songImg}] })
                 
                 
             }
@@ -314,8 +326,8 @@ function compare()
     console.log(albumSame)
 
     //calls server to render html with all this compare data and then ptus it on wbesite lets goo
-    if (mapSame.size > 0)
-    {   
+    //if (mapSame.size > 0 || artistSame.size > 0 || albumSame.size > 0)
+    //{   
         const arr = Array.from(mapSame, ([name, value]) => ({name, value}))
         const objMain = {items: arr};
         console.log(arr);
@@ -323,7 +335,7 @@ function compare()
         objMain.compare = true;
         objMain.artistSame = Array.from(artistSame, ([name, value]) => ({name, value}));
         objMain.albumSame = Array.from(albumSame, ([name, value]) => ({name, value}))
-
+        console.log("objMain:")
         console.log(objMain)
         callHTML(objMain).then(htmlData => {
             
@@ -331,7 +343,7 @@ function compare()
             
             x = false;
         })
-    }
+    //}
 
     // for tomorrow
     // basically just make the page look nice

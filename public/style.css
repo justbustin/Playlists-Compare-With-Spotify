@@ -12,6 +12,7 @@ body {
   background-size: cover;
   box-sizing: border-box;
   opacity: 0.9;
+  
 }
 
 .home header {
@@ -19,7 +20,7 @@ body {
   padding: 30px;
   text-shadow: white 0px 0px 10px;
   font-size: 20px;
-
+  
 }
 
 .home img {
@@ -50,7 +51,6 @@ h3 {
   text-decoration: underline;
 }
 h4 a {
-  text-decoration: underline;
 }
 
 a {
@@ -65,7 +65,7 @@ a:hover {
 }
 
 a:active {
-  color: black;
+  color: #31a731;
 }
 
 .encapsuleSlider {
@@ -123,6 +123,10 @@ a:active {
 
 .item .songsArtist:hover{
   color:white;
+}
+
+#msg {
+  color: #55d055;
 }
 
 .img {
@@ -299,6 +303,11 @@ hr {
 .songsRight {
   padding: 5px;
   flex: 1 1 50%;
+}
+
+#artistTitle p{
+  font-size: 15px;
+  color:rgb(169, 169, 169)
 }
 
 .artistRow:hover + .detailsRow {
@@ -524,30 +533,6 @@ button[type=button]:hover {
   background-color: #ffffff;
 }
 
-/*
-.albumRow {
-  display:flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin:15px;
-}
-
-.albCol1 {
-  flex: 1 1 50%;
-  
-}
-
-.albCol2 {
-  flex: 1 1 25%;
-}
-
-.albumRow img {
-  
-  width: 60%;
-  height: 60%;
-  object-fit: cover;
-}*/
-
 @media (min-device-width: 1051px) and (max-width: 1250px) {
 
   .row {
@@ -612,154 +597,4 @@ button[type=button]:hover {
 
 #makespace {
   height:300px;
-}
-
-
-/*
-.poop {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  
-}
-
-
-#containerOne {
-    float:left;
-    width:28%;
-    margin-left: 25px;
-    border-style: solid;
-    border-width: 1px;
-    padding:10px;
-}
-#containerTwo {
-    float:right;
-    width:28%;
-    margin-right: 25px;
-    border-style: solid;
-    border-width: 1px;
-    padding:10px;
-}
-
-
-
-#containerOne .box {
-    position: relative;
-    width: 70%;
-    
-    
-  }
-
-  #containerTwo .box {
-    position: relative;
-    width: 70%;
-    
-    
-  }
-  
-  #containerOne .box:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
-
-  #containerTwo .box:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
-
-#compareBox {
-  border-style: solid;
-    border-width: 1px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center; 
-    width: 35%;
-    
-}
-
-#compareButton{
-font-size: 15px;
-}
-
-
-#artist {
-  float:right;
-  padding-right: 10px;
-}
-
-
-#login {
-  float:right;
-}
-
-#logout {
-  float:right;
-}
-
-.center {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-}
-
-li {
-  padding-bottom: 10px;
-  padding-top: 10px;
-  /*border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(139, 139, 139);
-}
-
-/* compare layout  */
-/*
-.header {
-  display: grid;
-  padding:5px;
-  grid-template-columns: [index] 16px [first] 4fr [var1] 2fr;
-  text-align: start;
-  padding-left: 15px;
-}
-
-hr {
-  border: 0;
-  height: 1px;
-  background: #333;
-  background-image: linear-gradient(to right, #ccc, #333, #ccc);
-  width:98%;
-  margin: 2 auto;
-}
-
-.row {
-  display: grid;
-  padding:5px;
-  grid-template-columns: [index] 16px [first] 4fr [var1] 2fr;
-  text-align: start;
-  padding-left: 15px;
-}
-
-
-.tracklist {
-  display: flex;
-  margin-left: 15px;
-}
-
-.nameSong {
-  margin-left: 15px;
-  display:grid;
-  grid-template-rows: auto;
-  text-align: start;
-}
-
-.titleHeader {
-  margin-left: 15px;
-}
-
-.row:hover {
-  background-color: gainsboro;
-}
-
-.hiddenVal {
-  display: none;
 }
