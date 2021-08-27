@@ -148,9 +148,10 @@ function onSubmit(e)
         queryImg.src = data.images[0].url;
 
         //sets name of the playlist to the correct id
-        queryPlaylistName.innerHTML = data.name;
+        queryPlaylistName.innerHTML = `<a href="${data.external_urls.spotify}" target="_blank">${data.name}</a>`;
+
         //sets name of the user to the correct id
-        queryUsername.innerHTML = data.owner.display_name;
+        queryUsername.innerHTML = `<a href="${data.owner.external_urls.spotify}" target="_blank">${data.owner.display_name}</a>`;
         
         
         //takes the data and goes inside tracks and then items
