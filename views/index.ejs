@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <title>Spotify API</title>
+    <title>Playlists Compare</title>
 </head>
 <body>
     
 
     <div class="home">
                 <header>
-                    <span><img src="./logo.png"></span>
+                    <span><a href="https://www.spotify.com/us/download/other/" target="_blank"><img src="./logo.png"></a></span>
                     <h1>Playlists Compare with Spotify</h1>
-                    <h2>Compare playlists with yourself and others!</h2>
+                    <h2>Compare your playlists and others'!</h2>
                     <h4>Made with Spotify API</h4>
                 </header>
             </div>
 
     <div>
         <% if (!session.isAuth) { %>
+            <span id="redirect"><a href="/about"><h4>About</h4></a></span>
             <button id="log" type="button">
                 Log In
             </button>
@@ -30,6 +31,7 @@
                 <div id="msg"></div>
             </div>
         <% } else { %>
+            <span id="redirect"><a href="/about"><h4>About</h4></a></span>
             <form action="/auth/logout" method="POST">
                 <button id="log">
                     Log out
@@ -84,6 +86,7 @@
                         <% } %>
                     <% } %>
                 <% } else { %>
+                    <!-- demo playlists to show -->
                     <div class="item">
                         <img src="https://charts-images.scdn.co/assets/locale_en/regional/daily/region_us_large.jpg">
                         <a href="https://open.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp"  target="_blank"><p>Top 50 - USA</p></a>
@@ -158,7 +161,8 @@
         </form>
         
         <div class = "box">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" class="img">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" 
+            class="img">
         </div>
         
         <div>

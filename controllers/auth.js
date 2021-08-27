@@ -23,21 +23,21 @@ router.get('/oauth-callback', (req, res) => {
     console.log("QUERY CODE GIVEN BACK: " + code);
     api.token('authorization_code', code)
         .then((respo) => {
-            console.log(respo);
+            //console.log(respo);
             let token = JSON.parse(respo);
             console.log(token);
             console.log("token.access_token:" + token.access_token);
 
             api.getUser(token.access_token).then(resp => {
                 let obj = JSON.parse(resp);
-                console.log("obj:" + obj);
+                //console.log("obj:" + obj);
                 let userID = obj.id;
                 req.session.accessToken = token.access_token;
                 req.session.userID = userID;
                 req.session.isAuth = true;
                 req.session.dataXD = obj;
 
-                console.log("userID:" + userID);
+                console.log("session started for user: " + userID);
                 res.redirect("/");
                 
             })

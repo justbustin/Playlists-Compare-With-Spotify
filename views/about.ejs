@@ -18,18 +18,36 @@
         </header>
     </div>
 
+    <div>
+        <% if (!session.isAuth) { %>
+            <span id="redirect"><a href="/"><h4>Home</h4></a></span>
+            <form action="/auth" method="GET">
+                <button id="log">
+                    Log in
+                </button>
+            </form>
+        <% } else { %>
+            <span id="redirect"><a href="/"><h4>Home</h4></a></span>
+            <form action="/auth/logout" method="POST">
+                <button id="log">
+                    Log out
+                </button>
+            </form>
+        <% } %>
+    </div>
+
     <div class="flex">
         <div id="spotifyAbout">
             <div class="item1" data-aos="fade-left" data-aos-delay="50"
             data-aos-duration="1000" data-aos-once="false">
-                <h1>What is Compare Playlists with Spotify?</h1>
-                <div><p>This is a web application made with the purpose of allowing people to compare their own Spotify playlists
+                <h1>What is Playlists Compare with Spotify?</h1>
+                <div><p>This is a web application made with the purpose of allowing people to <span>compare</span> their own <span>Spotify playlists</span>
                     with others' or their own! <br><br>
-                     You can compare any playlist you'd like as long as you're able to get it's link or ID. By seeing the details laid out
+                     You can compare <span>any</span> playlist you'd like as long as you're able to get it's link or ID. By seeing the details laid out
                      in an interactive and pleasing manner, hopefully it makes music more fun and Spotify cooler! <br><br>
-                    This was built using the Spotify API, MongoDB, Express, NodeJS, EJS, CSS, Animate on Scroll, and vanilla JavaScript!
+                    This was built using the <span>Spotify API, MongoDB, Express, NodeJS, EJS, CSS, Animate on Scroll, and vanilla JavaScript</span>!
                 </p>
-                <h4>THIS WAS NOT MADE BY THE OFFICIAL SPOTIFY</h4>
+                <h4>THIS WAS NOT MADE BY THE OFFICIAL <span>SPOTIFY</span></h4>
             </div>
             </div>
 
@@ -54,9 +72,9 @@
             data-aos-duration="1000" data-aos-once="false">
                <h1>Who am I?</h1>
                 <div>
-                    <p>Hey! My name is Justin, and I'm a highly skilled googler who's learning more about programming everyday. I love exploring new technologies
-                    and learning new things! My primary goal is to become a software engineer, where I can further develop my skills to write code
-                    that's actually useful, and make everyday life for others just a little bit cooler! Afterall, it's the buildup of little things that eventually change the world. 
+                    <p>Hey! My name is <span>Justin</span>, and I'm a highly skilled googler who's learning more about programming everyday. I love exploring new technologies
+                    and learning new things! My primary goal is to become a <span>software engineer</span>, where I can further develop my skills to write code
+                    that's actually useful, and make everyday life for others just a little bit cooler! Afterall, it's the <span>buildup of little things</span> that eventually <span>change</span> the world. 
                     <br><br> Checkout my @'s below! <br>
                     </p>
                 </div>
@@ -68,12 +86,23 @@
         </div>
 
 
-        <div id="contactMe">
+        <div id="contactMe" data-aos="fade-in" data-aos-delay="50"
+        data-aos-duration="1000" data-aos-once="false">
+            <h1>Contact me!</h1>
             <form action="https://formsubmit.co/justbustin34@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="New email from compare spotify">
-                <input type="email" name="email" placeholder="Your email address" required>
-                <input type="text" name="message" placeholder="Your message" required>
-                <button type="submit">Send</button>
+                <div id="email">
+                    <input type="email" name="email" placeholder="Your email address" required>
+                </div>
+                
+                <input type="hidden" name="_next" value="http://localhost:3000/about">
+                <div id="message">
+                    <textarea type="text" name="message" placeholder="Your message" rows="14" cols="10" wrap="soft" required></textarea>
+                    <button type="submit" id="submit">Send</button>
+
+                </div>
+                
+                
            </form>
         </div>
     </div>

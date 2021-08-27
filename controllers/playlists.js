@@ -37,7 +37,7 @@ router.get('/:id', (req, res, next) => {
                 .then(async (data) => {
                     referenceData.access_token = data
                     await Account.Account.updateOne({_id: referenceData.databaseID}, {token: referenceData.access_token});
-                    console.log("updated");
+                    console.log("updated demo access token");
                 })
         }
 

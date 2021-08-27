@@ -1,8 +1,18 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0px;
   font-family: sans-serif, Helvetica, sans-serif;
   background: rgb(18,18,18);
   color: white;
+}
+
+#redirect {
+  position:absolute;
+     top: -10px;
+     right:100px;
 }
 
 .home {
@@ -11,7 +21,7 @@ body {
   background-image: url("./background1.jpg");
   background-size: cover;
   box-sizing: border-box;
-  opacity: 0.9;
+  
   
 }
 
@@ -19,7 +29,7 @@ body {
   margin:40px;
   padding: 30px;
   text-shadow: white 0px 0px 10px;
-  font-size: 20px;
+  font-size: 140%;
   
 }
 
@@ -270,7 +280,7 @@ hr {
   flex: 1 1 70%;
 }
 
-.detailsRow {
+.detailsRow, .detailsAlbum {
   position: absolute; 
   left: -999em;
   display:flex;
@@ -357,7 +367,7 @@ hr {
   grid-column: 1 / 3;
 }
 
-.albumRow:hover + .detailsRow {
+.albumRow:hover + .detailsAlbum {
   display:flex;
   flex-direction: row;
   background-color: grey;

@@ -148,7 +148,7 @@ let createPlaylist = function createPlaylist(token, userID, name)
             console.log('statusCode:' + res.statusCode);
             
             res.on("data", d =>{
-                console.log(d);
+                
                 body += d;
                 //console.log(body);
             })
@@ -194,7 +194,7 @@ let getListPlaylists = function getListPlaylists (token, userID)
             console.log('statusCode:' + res.statusCode);
             
             res.on("data", d =>{
-                console.log(d);
+                
                 body += d;
                 //console.log(body);
             })
@@ -236,7 +236,7 @@ let getSeveralArtists = function getSeveralArtists(token, artistID)
             console.log('statusCode:' + res.statusCode);
             
             res.on("data", d =>{
-                console.log(d);
+                
                 body += d;
                 //console.log(body);
             })

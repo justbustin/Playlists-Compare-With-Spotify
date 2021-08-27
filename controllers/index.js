@@ -5,7 +5,7 @@ const api = require('../helpers/api')
 const isAuth = require('../middlewares/isAuth')
 
 
-
+router.use('/about', require('./about'))
 router.use('/playlists', require('./playlists'))
 router.use('/auth', require('./auth'))
 
@@ -17,11 +17,8 @@ router.get('/', isAuth, async (req, res) => {
 
         req.session.playlists = await JSON.parse(data);
 
-        console.log("PLAYLIST REEEEEEEEEEEEEEEEEEE")
-        console.log(req.session.playlists.items[0])
-
+        console.log("rendered index with playlists initalization")
         res.render('index', { session: req.session })
-
     }
     else{
         res.render('index', { session: req.session });
