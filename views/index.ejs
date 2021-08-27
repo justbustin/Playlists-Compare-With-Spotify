@@ -69,7 +69,6 @@
                         <% if (session.playlists.items[i].images[0] == null) { %>
                         <div class="item">
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC">
-                            <p><%= session.playlists.items[i].name %></p>
                             <a href="<%= session.playlists.items[i].external_urls.spotify %>"  target="_blank"><p><%= session.playlists.items[i].name %></p></a>
                         <a href="<%= session.playlists.items[i].owner.external_urls.spotify %>"  target="_blank" class="songsArtist"><p><%= session.playlists.items[i].owner.display_name %></p></a>
                             <button type="button" id="addButton" value="<%=session.playlists.items[i].id%>" onclick="place(this)">add left</button>

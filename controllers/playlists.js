@@ -60,7 +60,6 @@ router.post("/compare", (req, res) => {
     }
   }
     */
-   console.log(req.body)
    if (req.body.compare)
    {
        if (req.session.isAuth)
