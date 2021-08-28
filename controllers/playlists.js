@@ -36,13 +36,21 @@ router.get('/:id', (req, res, next) => {
             callToken()
                 .then(async (data) => {
                     referenceData.access_token = data
-                    await Account.Account.updateOne({_id: referenceData.databaseID}, {token: referenceData.access_token});
-                    console.log("updated demo access token");
+                    Account.Account.updateOne({_id: referenceData.databaseID}, {token: referenceData.access_token}).then(dbinfo => {                        
+                        console.log("updated demo access token");
+
+                        api.apiCall(referenceData.access_token, playlistID)
+                        .then((data) => {
+                            console.log("success on /:id")
+                            res.set({ 'Content-Type': 'application/json'});
+                            res.send(data);
+                        })
+                    })
                 })
         }
 
-        res.sendStatus(404);
-        return;
+        //res.sendStatus(404);
+        //return;
     });
 })
 
