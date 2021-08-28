@@ -579,7 +579,7 @@ button[type=button]:hover {
   }
 
   #encapsuleGrid {
-    margin:0%;
+    margin: 10px;
     grid-template-columns: 30% auto 30%;
     
   }
@@ -608,8 +608,9 @@ button[type=button]:hover {
 
 @media (max-width: 590px) {
   #encapsuleGrid {
+      margin: 10px;
 
-      grid-template-columns: 435px;
+      grid-template-columns: 400px;
       justify-content: center;
       grid-template-areas: 
           'middle'
@@ -620,7 +621,7 @@ button[type=button]:hover {
 
 @media (max-width: 400px) {
   #encapsuleGrid {
-
+      margin: 5px;
       grid-template-columns: 350px;
       justify-content: center;
       grid-template-areas: 
