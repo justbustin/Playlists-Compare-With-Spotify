@@ -55,9 +55,9 @@
                 <% if (session.isAuth) { %>  
                 <div class="item">
                     <% if (session.dataXD.images[0] == null) { %>
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
                     <% } else { %>
-                        <img src="<%=session.dataXD.images[0].url%>" alt="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC">
+                        <img src="<%=session.dataXD.images[0].url%>" alt="https://i.scdn.co/image/907e87639091f8805c48681d9e7f144dedf53741">
                         <% } %>
                     <p><%= session.dataXD.display_name %></p>
                     <h4><a href="https://open.spotify.com/user/<%=session.userID%>/following" target="_blank">Friends List</a></h4>
@@ -68,7 +68,7 @@
 
                         <% if (session.playlists.items[i].images[0] == null) { %>
                         <div class="item">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC">
+                            <img src="https://i.scdn.co/image/907e87639091f8805c48681d9e7f144dedf53741">
                             <a href="<%= session.playlists.items[i].external_urls.spotify %>"  target="_blank"><p><%= session.playlists.items[i].name %></p></a>
                         <a href="<%= session.playlists.items[i].owner.external_urls.spotify %>"  target="_blank" class="songsArtist"><p><%= session.playlists.items[i].owner.display_name %></p></a>
                             <button type="button" id="addButton" value="<%=session.playlists.items[i].id%>" onclick="place(this)">add left</button>
@@ -76,7 +76,7 @@
                         </div>
                         <% } else { %>
                         <div class="item">
-                            <img src="<%=session.playlists.items[i].images[0].url%>" alt="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC">
+                            <img src="<%=session.playlists.items[i].images[0].url%>" alt="https://i.scdn.co/image/907e87639091f8805c48681d9e7f144dedf53741">
                             <a href="<%= session.playlists.items[i].external_urls.spotify %>"  target="_blank"><p><%= session.playlists.items[i].name %></p></a>
                         <a href="<%= session.playlists.items[i].owner.external_urls.spotify %>"  target="_blank" class="songsArtist"><p><%= session.playlists.items[i].owner.display_name %></p></a>
                             <button type="button" id="addButton" value="<%=session.playlists.items[i].id%>" onclick="place(this)">add left</button>
@@ -156,11 +156,11 @@
         <form id="formOne">
 
             <input type="text" id="inputOne" placeholder="Any Spotify playlist link or id" autocomplete="on">
-            <input type="submit">
+            <button type="submit" id="submit">Submit</button>
         </form>
-        
+
         <div class = "box">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" 
+            <img src="https://i.scdn.co/image/907e87639091f8805c48681d9e7f144dedf53741" 
             class="img">
         </div>
         
@@ -182,11 +182,11 @@
         <form id="formTwo">
 
             <input type="text" id="inputTwo" placeholder="Any Spotify playlist link or id" autocomplete="on">
-            <input type="submit">
+            <button type="submit" id="submit">Submit</button>
         </form>
         
         <div class = "box">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" class="img">
+            <img src="https://i.scdn.co/image/907e87639091f8805c48681d9e7f144dedf53741" class="img">
         </div>
         
         <div>
