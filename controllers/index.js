@@ -30,7 +30,7 @@ router.use((req, res, next) => {
     next();
     console.log("inside error page middleware");
     res.status(404);
-    res.sendFile('./public/404.html', { root: __dirname });
+    res.sendFile('../public/404.html', { root: __dirname });
 });
 
 module.exports = router
