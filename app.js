@@ -21,7 +21,8 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // Parse JSON bodies (as sent by API clients)
-app.use(express.json());
+app.use(express.json({limit: '2mb'}));
+//app.use(express.urlencoded({limit: '2mb'}));
 
 // dev middleware
 app.use(cors());

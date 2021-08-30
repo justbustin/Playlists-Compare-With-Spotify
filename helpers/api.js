@@ -101,6 +101,38 @@ let apiCall = function callAPI(token, playlistID){
     })
 }
 
+let nextCall = function nextCall(token, next){
+
+    return new Promise((resolve, reject) => {
+    
+        https.get(next, 
+        {
+        headers: { 'Authorization' : `Bearer ${token}`}
+        }, 
+        (resp) => {
+            console.log("inside the https.get");
+
+            let body = '';
+            resp.on('data', d => {
+                body+=d;
+            });
+
+            resp.on('end', () => {
+
+                if (resp.statusCode != 200) {
+                    console.log("non-200 response status code:", resp.statusCode);
+                    reject(body);
+                    return;
+                }
+
+                console.log("api called successfully");
+                resolve(body);
+            });
+        })
+
+    })
+}
+
 let getUser = function getUser(token)
 {
     return new Promise((resolve, reject) => {
@@ -256,5 +288,5 @@ let getSeveralArtists = function getSeveralArtists(token, artistID)
     })
 }
 
-module.exports = {token: token, apiCall: apiCall, getUser: getUser, createPlaylist: createPlaylist, getListPlaylists: getListPlaylists,
+module.exports = {token: token, apiCall: apiCall, nextCall: nextCall, getUser: getUser, createPlaylist: createPlaylist, getListPlaylists: getListPlaylists,
                   getSeveralArtists: getSeveralArtists};

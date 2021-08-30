@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const {callToken} = require('../helpers/token')
+const {callNextTracks} = require('../helpers/nextTracks')
 
 const Account = require('../models/acc')
 const api = require('../helpers/api');
@@ -21,8 +22,17 @@ router.get('/:id', (req, res, next) => {
     api.apiCall(tokenBeingUsed, playlistID)
     .then((data) => {
         console.log("success on /:id")
-        res.set({ 'Content-Type': 'application/json'});
-        res.send(data);
+        
+        playlistTracks = JSON.parse(data);
+
+        hasNext = playlistTracks.tracks.next
+        
+        if (!hasNext)
+            res.send(data)
+        else
+        {   
+           callNextTracks(res, tokenBeingUsed, hasNext);
+        }   
     })
     .catch(e => {
         // e is the object given back from my api code on .reject
@@ -36,14 +46,22 @@ router.get('/:id', (req, res, next) => {
             callToken()
                 .then(async (data) => {
                     referenceData.access_token = data
-                    Account.Account.updateOne({_id: referenceData.databaseID}, {token: referenceData.access_token}).then(dbinfo => {                        
+                    Account.Account.updateOne({_id: referenceData.databaseID}, {token: referenceData.access_token})
+                    .then(dbinfo => {                        
                         console.log("updated demo access token");
 
                         api.apiCall(referenceData.access_token, playlistID)
                         .then((data) => {
-                            console.log("success on /:id")
-                            res.set({ 'Content-Type': 'application/json'});
-                            res.send(data);
+                            playlistTracks = JSON.parse(data);
+
+                            hasNext = playlistTracks.tracks.next
+                            
+                            if (!hasNext)
+                                res.send(data)
+                            else
+                            {   
+                                callNextTracks(res, referenceData.access_token, hasNext);
+                            }  
                         })
                     })
                 })
