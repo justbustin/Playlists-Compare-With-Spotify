@@ -216,12 +216,12 @@ function onSubmit(e)
             if (song.track.uri.substr(0, 13) != "spotify:local")
             {
                 let fullKey = song.track.name + 'artist:' + song.track.artists[0].name;
-                if (e.path[0].id == "formOne")
+                if (currentBoxID == "formOne")
                 {
                     mapLeft.set(fullKey, {songName: song.track.name, artist: song.track.artists[0].name, albumName: song.track.album.name, 
                         songImg: song.track.album.images[0].url, songID: song.track.id, artistID: song.track.artists[0].id, albumLink: song.track.album.external_urls.spotify});   
                 }
-                else if (e.path[0].id == "formTwo")
+                else if (currentBoxID == "formTwo")
                 {
                     mapRight.set(fullKey, {songName: song.track.name, artist: song.track.artists[0].name, albumName: song.track.album.name, 
                         songImg: song.track.album.images[0].url, songID: song.track.id, artistID: song.track.artists[0].id, albumLink: song.track.album.external_urls.spotify});

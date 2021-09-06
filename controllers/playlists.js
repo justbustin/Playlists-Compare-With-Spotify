@@ -125,6 +125,7 @@ router.post("/compare", (req, res) => {
    }
    else
    {
+       console.log("rendered tracks")
        res.render('compare', { data: req.body.items });
    }
 })
