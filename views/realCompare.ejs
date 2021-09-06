@@ -47,12 +47,12 @@ data-aos-duration="1000">
 data-aos-duration="1000" data-aos-once="true">
     <h3>You share...</h3>
     <h1 class="displayNum"><span class="numberAnalysis"><%= data.artistSame.length %></span> <span>Artist(s)</span></h1>
-    <p>(hover for details)</p>
+    <p>(hover/click for details)</p>
 </div>
 
 <% for (let i = 0; i < data.artistSame.length; i++) { %>
-    <div class="artistRow" data-aos="fade-left" data-aos-delay="50"
-    data-aos-duration="1000" data-aos-anchor-placement="top-center" data-aos-once="true" data-aos-id="test">
+    <div id="artistRow" data-aos="fade-left" data-aos-delay="50"
+    data-aos-duration="1000" data-aos-anchor-placement="top-center" data-aos-once="true" data-aos-id="test" onclick="displayDetails(this)">
         <div class="artCol1">
             <% if (artists[i]) { %>
             <div><a href="<%= artists[i].external_urls.spotify %>" target="_blank"><h2><%= data.artistSame[i].name %></h2></a></div>
@@ -104,11 +104,13 @@ data-aos-duration="1000" data-aos-once="true">
 
             <% } %>
         </div>
+
+        <div class="to-top" onclick="collapse(this)">Collapse</div>
     </div>
 <% } %>
 
 <div data-aos="fade-right" data-aos-delay="50"
-data-aos-duration="1000" data-aos-once="true">
+data-aos-duration="1000" data-aos-once="true" id="albumHeader">
     <h3>You share...</h3>
     <h1 class="displayNum"><span class="numberAnalysis"><%= data.albumSame.length %> </span> <span>Album(s)</span></h1>
 </div>
@@ -116,7 +118,7 @@ data-aos-duration="1000" data-aos-once="true">
 <div class="albumGrid">
 <% for (let i = 0; i < data.albumSame.length; i++) { %>
     <div class="albumRow" data-aos="fade-in" data-aos-delay="50"
-    data-aos-duration="1000" data-aos-once="true">
+    data-aos-duration="1000" data-aos-once="true" onclick="displayDetails(this)">
         <div class="albCol1">
             <div><img src="<%= data.albumSame[i].value.albumIMG %>"></div>
             <div>
@@ -125,7 +127,6 @@ data-aos-duration="1000" data-aos-once="true">
                 </a>
             </div>
         </div> 
-
         
     </div>
     
@@ -150,6 +151,8 @@ data-aos-duration="1000" data-aos-once="true">
                 </div>
             <% } %>
         </div>
+
+        <div class="to-top" onclick="collapse(this)">Collapse</div>
     </div>
 
 <% } %>

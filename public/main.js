@@ -1,5 +1,3 @@
-console.log("working");
-
 // how the parsing works
 //let link = "https://open.spotify.com/playlist/3TJG5xIEdVW4WqT3YcGpz0?si=077d6c12f13c4440";
 //console.log(link.substring(34, 56));
@@ -9,20 +7,84 @@ let changed = true;
 const mapLeft = new Map();
 const mapRight = new Map();
 
-
 document.addEventListener('aos:in:test', () => {
-    if (x == false)
+    if (x == true)
     {
-        AOS.refreshHard()
-        x = true;
+        return;
     }
-    
+    AOS.refreshHard()
+    x = true;
 })
 
+function displayDetails(e)
+{
+    let detailsRow = e.nextElementSibling;
+    console.log(e.id)
+    console.log(detailsRow.myParams)
+    if (e.id == "artistRow")
+    {
+        if (detailsRow.myParams != true)
+        {
+            // displayStyle
+            detailsRow.style.display = "flex"
+            detailsRow.style.flexDirection = "row"
+            detailsRow.style.position = "relative"
+            detailsRow.style.left = 0;
+            detailsRow.style.flexWrap = "wrap"
+            detailsRow.style.backgroundColor = "rgb(70, 70, 70)"
+            detailsRow.style.opacity = 1;
+            detailsRow.style.margin = "20px"
+            detailsRow.style.marginBottom = "-30px"
+            detailsRow.style.transform =  "translateY(-20px)"
+
+            detailsRow.myParams = true;
+        }
+        else
+        {
+            detailsRow.style = null;
+
+            detailsRow.myParams = false;
+        }
+    }
+    else
+    {
+        if (detailsRow.myParams != true)
+        {
+            // displayStyle
+            detailsRow.style.display = "flex"
+            detailsRow.style.flexDirection = "row";
+            detailsRow.style.transform =  "translateY(-15px)"
+            detailsRow.style.backgroundColor = "rgb(70, 70, 70)"
+            detailsRow.style.opacity = 1;
+            detailsRow.style.margin = "0"
+            detailsRow.style.position = "relative"
+            detailsRow.style.gridColumn = "1 / -1"
+            detailsRow.style.left = 0;
+
+            detailsRow.myParams = true;
+
+        }
+        else
+        {
+            detailsRow.style = null;
+
+            detailsRow.myParams = false;
+        }
+    }
+}
+
+function collapse(e)
+{
+    let showingRow = e.parentElement.previousElementSibling;
+    let detailsRow = e.parentElement;
+
+    showingRow.scrollIntoView();
+    detailsRow.style = null;
+}
+
 function topFunction() {
-    document.body.scrollTop = 800;
-    document.documentElement.scrollTop = 800;
-  }
+    document.querySelector("#demo").scrollIntoView();
+}
 
 //Get the button
 var mybutton = document.getElementById("myBtn");
@@ -39,7 +101,7 @@ function scrollFunction() {
   }
 }
 
-//so you can indeed return html through a fetch call apis dfbnasdiugnskjdngfsdfkajhng
+// return html through a fetch call api
 async function callHTML(bodyData)
 {
     let jsonData = JSON.stringify(bodyData);
@@ -54,28 +116,26 @@ async function callHTML(bodyData)
     return data;
 }
 
-
-
+// receives playlists
 async function callPlaylist(playlistID) 
 {
     let res = (playlistID.substring(34, 56) != "") ? playlistID.substring(34, 56) : playlistID;
     console.log("result from parse: " + res);
     const response = await fetch(`playlists/${res}`);
-    console.log(response);
+    
     const data = await response.json();
     return data;
 }
 
+// adds playlist id to link
 function place(e)
 {
     if (e.id == "addButton")
     {
-        console.log(e.value);
         document.querySelector("#inputOne").value = e.value; 
     }
     else
     {
-        console.log(e.value);
         document.querySelector("#inputTwo").value = e.value;
     }
     
@@ -89,35 +149,33 @@ let formTwo = document.querySelector("#formTwo");
 let loginBtn = document.querySelector("#log");
 
 formOne.addEventListener("submit", onSubmit);
+formOne.param = "One";
 formTwo.addEventListener("submit", onSubmit);
+formTwo.param = "Two"
 
 loginBtn.addEventListener("click", redirectSpotAuth);
 
 function redirectSpotAuth(e)
 {
-    console.log("hello");
     window.location.href = "auth";
 }
 
 function onSubmit(e)
 {
-
     e.preventDefault();
-    console.log(e);
+
+    let currentBoxID = e.currentTarget.id // gets HTML id from form
+    let boxSelect = e.currentTarget.param; // string param to decide which box
 
     //uses the e object to basically get everything inside the html LOL IDK A BETTER WAY
-    const playlistLink = e.path[1].firstElementChild[0];
-    const queryImg = e.path[1].children[1].firstElementChild;
-    const queryPlaylistName = e.path[1].children[2].children[0];
-    const queryUsername = e.path[1].children[2].children[1];
-    const queryTracks = e.path[1].children[3];
-
-    console.log(`Playlist link: ${playlistLink.value}`);
+    const playlistLink = document.querySelector(`#input${boxSelect}`);
+    const queryImg = document.querySelector(`#img${boxSelect}`);
+    const queryPlaylistName = document.querySelector(`#playName${boxSelect}`);
+    const queryUsername = document.querySelector(`#name${boxSelect}`);
+    const queryTracks = document.querySelector(`#tracks${boxSelect}`);
 
     if (playlistLink.value == "")
     {
-        console.log("error");
-
         playlistLink.value = "";
         document.querySelector("#msg").innerHTML = "<h2>please input a valid link or id</h2>";
 
@@ -130,7 +188,7 @@ function onSubmit(e)
     //calls the api function (api call done by server and server returns the data back here)
     callPlaylist(playlistLink.value).then(data => {
         //clears map before calling playlist if formOne
-        if (e.path[0].id == "formOne")
+        if (currentBoxID == "formOne")
         {
             mapLeft.clear();
         }
@@ -141,10 +199,7 @@ function onSubmit(e)
         // clears tracks
         queryTracks.innerHTML = "";
 
-        console.log("inside callPlaylist");
-        console.log(data);
         queryImg.value = data.id;
-        console.log("REEEEEEEEEEEEEEEEE: " + queryImg.value);
         queryImg.src = data.images[0].url;
 
         //sets name of the playlist to the correct id
@@ -188,18 +243,15 @@ function onSubmit(e)
             }
 
             callHTML(objMain).then(htmlData => {
-                console.log(htmlData);
                 queryTracks.innerHTML = htmlData;
                 
             })
         
 
         playlistLink.value = "";
-        console.log("done with async call");
         changed = true;
     })
     .catch((err) => {
-        console.log("err: " + err);
 
         playlistLink.value = "";
         document.querySelector("#msg").innerHTML = "<h2>please input a valid link or id</h2>";
@@ -232,10 +284,6 @@ function compare()
     let queryTracks = document.querySelector("#same");
     
     // access value by saying testData[i].innerText
-
-    //console.log(testData)
-
-    let artistPlaylists = {};
 
     const mapSame = new Map();
     const mapArtist = new Map();
@@ -321,36 +369,21 @@ function compare()
         }
     }
 
-    console.log("aristSame:")
-    console.log(artistSame)
-    console.log("albumSame:")
-    console.log(albumSame)
-
     //calls server to render html with all this compare data and then ptus it on wbesite lets goo
     //if (mapSame.size > 0 || artistSame.size > 0 || albumSame.size > 0)
     //{   
         const arr = Array.from(mapSame, ([name, value]) => ({name, value}))
         const objMain = {items: arr};
-        console.log(arr);
         
         objMain.compare = true;
         objMain.artistSame = Array.from(artistSame, ([name, value]) => ({name, value}));
         objMain.albumSame = Array.from(albumSame, ([name, value]) => ({name, value}))
-        console.log("objMain:")
-        console.log(objMain)
+
         callHTML(objMain).then(htmlData => {
             
             queryTracks.innerHTML = htmlData;
             
             x = false;
         })
-    //}
-
-    // for tomorrow
-    // basically just make the page look nice
-    // clean the data ina  way so you can find same artists, songs, playlists
-    // for comparing, the object we send will be different and it'll allow us to display the similarities
-    // yeee
-    console.log(mapSame);
     
 }
