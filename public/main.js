@@ -231,12 +231,12 @@ function onSubmit(e)
             }
         })
         let objMain;
-        if (e.path[0].id == "formOne")
+        if (currentBoxID == "formOne")
             {
                 const arr = Array.from(mapLeft, ([name, value]) => ({name, value}))
                 objMain = {items: arr};  
             }
-            else if (e.path[0].id == "formTwo")
+            else if (currentBoxID == "formTwo")
             {
                 const arr = Array.from(mapRight, ([name, value]) => ({name, value}))
                     objMain = {items: arr};
