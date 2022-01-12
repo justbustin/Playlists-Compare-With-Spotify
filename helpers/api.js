@@ -4,7 +4,6 @@ const https = require ('https');
 const queryString = require ('querystring');
 
 const client = "46d2e73d137147a0b71385576ef05ba1";
-//const secret = "1afc42f00a154ab49e809a8bac9b11d2";
 
 
 const options = {
